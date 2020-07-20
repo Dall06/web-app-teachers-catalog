@@ -1,0 +1,441 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>App</title>
+  </head>
+  <!--NavBar-->
+  <nav class="nav nav-pills nav-justified mb-2 p-3">
+    <a class="text-sm-center nav-link active text-white" id="lnkHome" onclick="clickHome()">Home</a>
+    <a class="text-sm-center nav-link text-white" id="lnkAssig" onclick="clickAssig()">Assignaments</a>
+    <a class="text-sm-center nav-link text-white" id="lnkTeachers" onclick="clickTeachers()">Teachers</a>
+    <a class="text-sm-center nav-link text-white" id="lnkConfig" onclick="clickConfig()">Configuration</a>
+    <a class="text-sm-center nav-link text-white" id="lnkAbout" onclick="clickAbout()">About</a>
+  </nav>
+  <body class="bg-dark">
+    <!--Home screen-->
+      <div id="dvHome" class="row p-3 mb-2" style="position: absolute; top: 100px; left: 10%; width: 90%; ">
+        <div class="col col-lg-4">
+          <div class="card text-black bg-light mb-3" style="width: 18rem; height: 30rem;">
+            <img src="../Img/28569.jpg" class="card-img-top" alt="..." style="height: 15rem;">
+            <div class="card-body">
+              <h5 class="card-title">Teachers</h5>
+              <p class="card-text">Look for many teachers in the list. You will be able to contact anyone of them!.</p>
+            </div>
+            <div class="card-body">
+              <a href="#" class="btn btn-primary" onclick="clickTeachers()">Look for them</a>
+            </div>
+          </div>
+        </div>
+    
+        <div class="col col-lg-4">
+          <div class="card text-black bg-light mb-3" style="width: 18rem; height: 30rem;">
+            <img src="../Img/168481-OVJKKJ-346.jpg" class="card-img-top" alt="..." style="height: 15rem;">
+            <div class="card-body">
+              <h5 class="card-title">Assignment</h5>
+              <p class="card-text">Check the Assignments that the teachers provide to you.</p>
+            </div>
+            <div class="card-body">
+              <a href="#" class="btn btn-primary" onclick="clickAssig()">Check them</a>
+            </div>
+          </div>
+        </div>
+    
+        <div class="col col-lg-4">
+          <div class="card text-black bg-light mb-3" style="width: 18rem; height: 30rem;">
+            <img src="../Img/2828682.jpg" class="card-img-top" alt="..." style="height: 15rem;">
+            <div class="card-body">
+              <h5 class="card-title">Configuration</h5>
+              <p class="card-text">Configure your account and log out form the app.</p>
+            </div>
+            <div class="card-body">
+              <a href="#" class="btn btn-primary" onclick="clickConfig()">Go there</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--Tabla de materias-->
+      <div id="dvTblAssig" class="row invisible" style="position: absolute; top: 100px; left: 10%; width: 80%;">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Search</span>
+          </div>
+          <input type="text" class="form-control" placeholder="Assignment Name" onchange="getAssignmentByName()" id="txtSearchA" aria-label="Username" aria-describedby="basic-addon1">
+        </div>
+
+        <button type="button" onclick="clickAddAssignament()" id="btnAddAssig" class="btn btn-primary p-2">add</button>
+
+        <table class="table table-hover table-light">
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Assignment Name</th>
+              <th scope="col">Level</th>
+              <th scope="col">Teachers</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="bodyTab1">
+            <!--In here the information will be wirtten by the JS using JQuery-->
+          </tbody>
+        </table>
+      </div>
+      <!--Tabla de maestros-->
+      <div id="dvTblTeachers" class="row invisible" style="position: absolute; top: 100px; left: 10%; width: 80%;">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1" >Search</span>
+          </div>
+          <input type="text" class="form-control" placeholder="Teacher Name" aria-label="Username" onchange="getTeachersByName()" id="txtSearchT" aria-describedby="basic-addon1">
+        </div>
+
+        <button type="button" onclick="clickAddTeacher()" class="btn btn-primary p-2">add</button>
+
+        <table class="table table-hover table-light">
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Teacher Name</th>
+              <th scope="col">Assignment Id</th>
+              <th scope="col">Institution</th>
+              <th scope="col">Rating</th>
+              <th scope="col">Disponibility</th>
+              <th scope="col">City</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="bodyTab2">
+            <!--In here the information will be wirtten by the JS using JQuery-->
+          </tbody>
+        </table>
+      </div>
+      <!--Configuracion de usuario-->
+      <div id="dvConfig" class="row invisible" style="position: absolute; top: 100px; left: 25%; width: 80%;">
+        <div class="card text-black bg-light mb-3" >
+              <div class="card-body">
+                <h5 class="card-title">User</h5>
+                <p class="card-text">Change values and properties of your account.</p>
+                
+                <div class="input-group mb-2">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">User Name</span>
+                  </div>
+                  <input disabled type="text" class="form-control" id="txtUserN">
+                </div>
+                
+                <div class="input-group mb-2">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">First and last name</span>
+                  </div>
+                  <input disabled type="text" aria-label="First name" id="txtFirstName" class="form-control">
+                  <input disabled type="text" aria-label="Last name" id="txtLastName" class="form-control">
+                </div>
+                
+                <div class="input-group mb-2">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">E-mail</span>
+                  </div>
+                  <input disabled type="text" class="form-control" id="txtEmail">
+                </div>
+  
+                <div class="input-group mb-2">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Cell-phone</span>
+                  </div>
+                  <input disabled type="text" class="form-control" id="txtCellPhone">
+                </div>
+
+                <div class="">
+                  <a class="btn btn-primary" href="#" onclick="logOut()" role="button">Log-out</a>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--Pantalla de acerca de la app-->
+      <div class="row invisible" id="dvAbout" style="position: absolute; top: 10rem; left: 35%; width: 90%;">
+        <div class="card">
+          <div class="card-header">
+            About
+          </div>
+          <div class="card-body">
+            <blockquote class="blockquote mb-0">
+              <h4></h2>
+                <h6>Developed by: </h4>
+                <h6>Version: 0.001</h6>
+                <br>
+                <h6>Images authors</h6>
+                <div class=""><a href="https://www.freepik.es/fotos-vectores-gratis/escuela"><h6>Vector de Escuela creado por macrovector - www.freepik.es</h6></a></div>
+                <div class=""><a href="https://www.freepik.es/fotos/fondo"><h6>Foto de Fondo creado por freepik - www.freepik.es</h6></a></div>
+                <div class=""><a href="https://www.freepik.es/fotos-vectores-gratis/tecnologia"><h6>Vector de Tecnología creado por stories - www.freepik.es</h6></a></div>
+                <div class=""><a href="https://www.flaticon.com/authors/freepik" title="Freepik"><h6>Freepik</h6></a> <h6>from</h6> <a href="https://www.flaticon.com/" title="Flaticon"> <h6>www.flaticon.com</h6></a></div>
+            </blockquote>
+          </div>
+        </div>
+      </div>
+      <!--Pnatalla de informacion del maestro-->
+      <div id="dvTeacherInfo" class="row invisible" style="position: absolute; top: 100px; left: 25%; width: 90%;">
+        <div class="card text-black bg-light mb-3" style="max-width: 450rem;">
+          <div class="row no-gutters">
+            <div class="col-md-4">
+              <img src="../Img/profile-user.png" class="card-img" alt="..." style="height: 15rem; width: 15rem; position: relative; top: 6rem; left: 2rem;">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">Teacher information</h5>
+                
+                <div class="input-group mb-2">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">First and last name</span>
+                  </div>
+                  <input type="text" aria-label="First name" id="txtFirstNameT" disabled class="form-control">
+                  <input type="text" aria-label="Last name" id="txtLastNameT" disabled class="form-control">
+                </div>
+                
+                <div class="input-group mb-2">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Assignment Id</span>
+                  </div>
+                  <input type="text" class="form-control" id="txtAssig" disabled placeholder="Assignment Id" aria-label="Username" aria-describedby="basic-addon1">
+                </div>
+  
+                <div class="input-group mb-2">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Institution</span>
+                  </div>
+                  <input type="text" class="form-control" id="txtIns" disabled placeholder="Institution" aria-label="Username" aria-describedby="basic-addon1">
+                </div>
+  
+                <div class="input-group mb-2">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Rating</span>
+                  </div>
+                  <input type="text" class="form-control" id="txtRat" disabled placeholder="Rating" aria-label="Username" aria-describedby="basic-addon1">
+                </div>
+  
+                <div class="input-group mb-2">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">E-mail</span>
+                  </div>
+                  <input type="text" class="form-control" id="txtEmailT" disabled placeholder="E-mail" aria-label="Username" aria-describedby="basic-addon1">
+                </div>
+  
+                <div class="input-group mb-2">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Cell-phone</span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="Cell-phone" disabled id="txtCellPhoneT" aria-label="Username" aria-describedby="basic-addon1">
+                </div>
+
+                <div class="input-group mb-2">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">City</span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="City" disabled id="txtCity" aria-label="txtCity" aria-describedby="basic-addon1">
+                </div>
+  
+                <div class="input-group mb-2">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Disponibility</span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="Disponibilitye" disabled id="txtDisp" aria-label="Username" aria-describedby="basic-addon1">
+                </div>
+  
+                <div class="">
+                  <a class="btn btn-primary" href="#" role="button">Contact</a>
+                  <a class="btn btn-primary" href="#" role="button">Rate</a>
+                  <a class="btn btn-primary" href="#" role="button" onclick="clickTeachers()">Back</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> 
+      <!--Pantalla de actaulizacion de maestro-->
+      <div id="dvPutTeacherInfo" class="row invisible" style="position: absolute; top: 100px; left: 25%; width: 90%;">
+        <div class="card text-black bg-light mb-3" style="max-width: 450rem;">
+          <div class="row no-gutters">
+            <div class="col-md-4">
+              <img src="../Img/profile-user.png" class="card-img" alt="..." style="height: 15rem; width: 15rem; position: relative; top: 6rem; left: 2rem;">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">Teacher information</h5>
+
+                <div class="input-group mb-2">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Id</span>
+                  </div>
+                  <input type="text" aria-label="Id" id="txtIdE" disabled class="form-control">
+                </div>
+                
+                <div class="input-group mb-2">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">First and last name</span>
+                  </div>
+                  <input type="text" aria-label="First name" id="txtFirstNameTE" class="form-control">
+                  <input type="text" aria-label="Last name" id="txtLastNameTE" class="form-control">
+                </div>
+                
+                <div class="input-group p-2">
+                  <div class="input-group-append">
+                    <label class="input-group-text" for="selAssigTe">Assignament</label>
+                  </div>
+                  <select class="custom-select" id="selAssigTe">
+                    <option selected>Choose...</option>
+                  </select>
+                </div>
+  
+                <div class="input-group mb-2">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Institution</span>
+                  </div>
+                  <input type="text" class="form-control" id="txtInstitutionE" placeholder="Institution" aria-label="Username" aria-describedby="basic-addon1">
+                </div>
+  
+                <div class="input-group mb-2">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Rating</span>
+                  </div>
+                  <input type="text" class="form-control" id="txtRatE" placeholder="Rating" aria-label="Username" aria-describedby="basic-addon1">
+                </div>
+  
+                <div class="input-group mb-2">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">E-mail</span>
+                  </div>
+                  <input type="text" class="form-control" id="txtEmailTE" placeholder="E-mail" aria-label="Username" aria-describedby="basic-addon1">
+                </div>
+  
+                <div class="input-group mb-2">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Cell-phone</span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="Cell-phone" id="txtCellPhoneTE" aria-label="Username" aria-describedby="basic-addon1">
+                </div>
+
+                <div class="input-group mb-2">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">City</span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="City" id="txtCityTE" aria-describedby="basic-addon1">
+                </div>
+  
+                <div class="input-group mb-2">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Disponibility</span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="Disponibility" disabled id="txtDispTE" aria-label="Username" aria-describedby="basic-addon1">
+                </div>
+  
+                <div class="">
+                  <a class="btn btn-primary" href="#" role="button" onclick="putTeacher()">Edit</a>
+                  <a class="btn btn-primary" href="#" role="button" onclick="clickTeachers()">Back</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> 
+      <!--Pnatalla de agregar maestro-->
+      <div id="dvAddTeacher" class="row invisible" style="position: absolute; top: 100px; left: 20%; width: 80%;">
+        <div class="card" style="width: 80%;">
+          <div class="card-body" >
+
+            <div class="input-group p-2">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="">First and last name</span>
+              </div>
+              <input type="text" class="form-control" id="txtTeacherFN">
+              <input type="text" class="form-control" id="txtTeacherLN">
+            </div>
+
+            <div class="input-group p-2">
+              <div class="input-group-append">
+                <label class="input-group-text" for="selAssigLabelT">Assignament</label>
+              </div>
+              <select class="custom-select" id="selAssigT">
+                <option selected>Choose...</option>
+              </select>
+            </div>
+
+            <div class="input-group p-2">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Institution</span>
+              </div>
+              <input type="text" class="form-control" class="form-control" placeholder="Institution" id="txtTeacherIns">
+            </div>
+
+            <div class="input-group p-2">
+              <div class="input-group-prepend">
+                <span class="input-group-text" >E-mail</span>
+              </div>
+              <input type="text" class="form-control" id="txtTeacherEmail" placeholder="e-mail">
+            </div>
+
+            <div class="input-group p-2">
+              <div class="input-group-prepend">
+                <span class="input-group-text" >Cell-phone</span>
+              </div>
+              <input type="text" class="form-control" id="txtTeacherPhone" placeholder="Cell-phone" aria-describedby="basic-addon1">
+            </div>
+
+            <div class="input-group p-2">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="">City</span>
+              </div>
+              <input type="text" class="form-control" id="txtTeacherCity" placeholder="City">
+            </div>
+
+            <button type="button" onclick="clickTeachers()" class="btn btn-primary p-2" style="position: relative; left: 75%;">Back</button>
+            <button type="button" onclick="postTeacher()" class="btn btn-primary p-2" style="position: relative; left: 85%;">Add</button>
+
+          </div>
+        </div>
+      </div>
+      <!--Pnatalla de agregar materia-->
+      <div id="dvAddAssignament" class="row invisible" style="position: absolute; top: 100px; left: 25%; width: 90%;">
+        <div class="card" style="position: relative; width: 50%;">
+          <div class="card-body" >
+
+            <div class="input-group p-2">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Name</span>
+              </div>
+              <input type="text" id="txtAssigName" class="form-control" placeholder="Name" aria-label="Name">
+            </div>
+
+            <div class="input-group p-2">
+              <div class="input-group-append">
+                <label class="input-group-text" for="" id="selLevel">Schoolar Institution</label>
+              </div>
+              <select class="custom-select select" id="selLevel2">
+                <option selected>Choose...</option>
+                <option value="1">Elementary</option>
+                <option value="2">Jr HighSchool</option>
+                <option value="3">HighSchool</option>
+                <option value="4">University</option>
+              </select>
+            </div>
+            
+            <button type="button" onclick="clickAssig()" class="btn btn-primary p-2" style="position: relative; left: 75%;">Back</button>
+            <button type="button" onclick="postAssignament()" class="btn btn-primary p-2" style="position: relative; left: 85%;">Add</button>
+
+          </div>
+        </div>
+      </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="../Js/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  </body>
+</html>

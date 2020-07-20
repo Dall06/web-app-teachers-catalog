@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>Login</title>
+  </head>
+  <body class="bg-dark">
+
+    <!--Ventana del login-->
+    <div id="dvLog" class="row " style="position: relative; width: 30%; margin-top: 10rem; left: 35%;">
+      <div class="card text-black bg-light mb-3" style="width: 200rem; height: 15rem;">
+        <div class="input-group mb-3 p-2">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">User</span>
+          </div>
+          <input type="text" class="form-control" placeholder="Username or E-mail" aria-label="Username" aria-describedby="basic-addon1">
+        </div>
+
+        <div class="input-group mb-3 p-2">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Password</span>
+          </div>
+          <input type="text" class="form-control" placeholder="Password" aria-label="Username" aria-describedby="basic-addon1">
+        </div>
+
+        <div class="p-2">
+          <a type="button" class="btn btn-primary p-2" onclick="Login()" >Log-in</a>
+          <a type="button" class="btn btn-primary p-2" onclick="goToCreate()" >Create account</a>
+      </div>
+      </div>
+    </div>
+    <!--Ventana del crear usuario-->
+    <div id="dvCreate" class="row invisible" style="position: absolute; top: 100px; left: 25%; width: 80%;">
+      <div class="card text-black bg-light mb-3" >
+            <div class="card-body">
+              <h5 class="card-title">User</h5>
+              
+              <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">User Name</span>
+                </div>
+                <input type="text" class="form-control" id="txtUserN">
+              </div>
+
+              <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Password</span>
+                </div>
+                <input type="password" class="form-control" id="txtPass">
+              </div>
+              
+              <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">First and last name</span>
+                </div>
+                <input type="text" aria-label="First name" id="txtFirstName" class="form-control">
+                <input type="text" aria-label="Last name" id="txtLastName" class="form-control">
+              </div>
+              
+              <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">E-mail</span>
+                </div>
+                <input type="text" class="form-control" id="txtEmail">
+              </div>
+
+              <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Cell-phone</span>
+                </div>
+                <input type="text" class="form-control" id="txtCellPhone">
+              </div>
+              <div class="">
+                <a class="btn btn-primary" onclick="goToLog()" href="#" role="button">Back</a>
+                <a class="btn btn-primary" onclick="CreateUser()" href="#" role="button">Add user</a>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="../Js/login.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  </body>
+</html>
